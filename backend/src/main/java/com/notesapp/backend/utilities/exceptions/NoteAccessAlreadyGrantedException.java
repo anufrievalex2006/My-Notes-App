@@ -1,7 +1,7 @@
 package com.notesapp.backend.utilities.exceptions;
 
 public class NoteAccessAlreadyGrantedException extends RuntimeException {
-  public NoteAccessAlreadyGrantedException(String message) {
-    super(message);
-  }
+    public NoteAccessAlreadyGrantedException() {
+        super("У этого пользователя уже есть доступ к заметке!");
+    }
 }

@@ -1,7 +1,7 @@
 package com.notesapp.backend.utilities.exceptions;
 
 public class NoteAccessDeniedException extends RuntimeException {
-  public NoteAccessDeniedException(String message) {
-    super(message);
-  }
+    public NoteAccessDeniedException() {
+        super("У вас нет доступа к этой заметке");
+    }
 }
