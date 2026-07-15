@@ -4,6 +4,7 @@ import com.notesapp.backend.dtos.requests.update.UserUpdateDto;
 import com.notesapp.backend.dtos.responses.UserResponse;
 import com.notesapp.backend.models.api.User;
 import com.notesapp.backend.services.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -32,7 +33,7 @@ public class UserController {
     }
     @PutMapping("/me")
     public ResponseEntity<UserResponse> updateProfile(
-            @RequestBody UserUpdateDto req,
+            @Valid @RequestBody UserUpdateDto req,
             @AuthenticationPrincipal User cur
     ) {
         return ResponseEntity.ok(service.update(req, cur));

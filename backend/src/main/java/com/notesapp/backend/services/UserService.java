@@ -40,14 +40,13 @@ public class UserService {
         User u = repo.findById(curUser.getId())
                 .orElseThrow(UserNotFoundException::new);
 
-        if (req.getUsername() != null && !req.getUsername().equals(u.getUsername())) {
+        if (!req.getUsername().equals(u.getUsername())) {
             if (repo.existsByUsername(req.getUsername())) {
                 throw new UsernameAlreadyExistsException(req.getUsername());
             }
             u.setUsername(req.getUsername());
         }
-        if (req.getAvatarUrl() != null)
-            u.setAvatarUrl(req.getAvatarUrl());
+        u.setAvatarUrl(req.getAvatarUrl());
 
         return toResponse(repo.save(u));
     }

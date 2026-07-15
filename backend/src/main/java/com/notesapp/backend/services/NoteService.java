@@ -40,7 +40,7 @@ public class NoteService {
         Note n = Note.builder()
                 .title(req.getTitle())
                 .content(req.getContent())
-                .isPublic(req.isPublic())
+                .isPublic(req.getIsPublic())
                 .author(curUser)
                 .build();
         return toResponse(repo.save(n));
@@ -53,7 +53,7 @@ public class NoteService {
 
         n.setTitle(req.getTitle());
         n.setContent(req.getContent());
-        n.setPublic(req.isPublic());
+        n.setPublic(req.getIsPublic());
         return toResponse(repo.save(n));
     }
     @Transactional

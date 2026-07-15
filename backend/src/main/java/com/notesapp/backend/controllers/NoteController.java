@@ -5,6 +5,7 @@ import com.notesapp.backend.dtos.requests.update.NoteUpdateDto;
 import com.notesapp.backend.dtos.responses.NoteResponse;
 import com.notesapp.backend.models.api.User;
 import com.notesapp.backend.services.NoteService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -32,7 +33,7 @@ public class NoteController {
     }
     @PostMapping
     public ResponseEntity<NoteResponse> create(
-            @RequestBody NoteCreateDto req,
+            @Valid @RequestBody NoteCreateDto req,
             @AuthenticationPrincipal User cur
     ) {
         return ResponseEntity.ok(service.create(req, cur));
@@ -40,7 +41,7 @@ public class NoteController {
     @PutMapping("/{id}")
     public ResponseEntity<NoteResponse> update(
             @PathVariable UUID id,
-            @RequestBody NoteUpdateDto req,
+            @Valid @RequestBody NoteUpdateDto req,
             @AuthenticationPrincipal User cur
     ) {
         return ResponseEntity.ok(service.update(id, req, cur));
