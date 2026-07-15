@@ -1,0 +1,32 @@
+@startuml NotesAppClasses
+left to right direction
+
+class User {
+    - Id: UUID
+    + Username: string
+    + AvatarUrl: string
+    + PasswordHash: string
+    + CreatedAt: datetime
+}
+
+class Note {
+    - Id: UUID
+    + Title: string
+    + Content: string
+    + IsPublic: boolean
+    + CreatedAt: datetime
+    + UpdatedAt: datetime
+}
+
+class NoteAccess {
+    - Id: UUID
+    + NoteId: UUID
+    + UserId: UUID
+    + GrantedAt: datetime
+}
+
+User *-- Note : author
+Note "1" -- "*" NoteAccess
+User "1" -- "*" NoteAccess
+
+@enduml
