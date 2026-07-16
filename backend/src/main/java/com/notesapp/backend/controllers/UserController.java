@@ -1,6 +1,7 @@
 package com.notesapp.backend.controllers;
 
 import com.notesapp.backend.dtos.requests.update.UserUpdateDto;
+import com.notesapp.backend.dtos.responses.UserPublicResponse;
 import com.notesapp.backend.dtos.responses.UserResponse;
 import com.notesapp.backend.models.api.User;
 import com.notesapp.backend.services.UserService;
@@ -20,11 +21,11 @@ public class UserController {
     private final UserService service;
 
     @GetMapping
-    public ResponseEntity<List<UserResponse>> get() {
+    public ResponseEntity<List<UserPublicResponse>> get() {
         return ResponseEntity.ok(service.get());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponse> getById(@PathVariable UUID id) {
+    public ResponseEntity<UserPublicResponse> getById(@PathVariable UUID id) {
         return ResponseEntity.ok(service.getById(id));
     }
     @GetMapping("/me")

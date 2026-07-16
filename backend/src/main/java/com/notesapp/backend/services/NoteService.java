@@ -91,6 +91,7 @@ public class NoteService {
                 .authorId(n.getAuthor().getId())
                 .createdAt(n.getCreatedAt())
                 .updatedAt(n.getUpdatedAt())
+                .isPublic(n.isPublic())
                 .accesses(n.getAccesses().stream().map(a -> NoteAccessResponse.builder()
                         .id(a.getId())
                         .noteId(a.getNote().getId())

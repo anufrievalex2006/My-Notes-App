@@ -3,6 +3,7 @@ package com.notesapp.backend.services;
 import com.notesapp.backend.dtos.requests.update.UserUpdateDto;
 import com.notesapp.backend.dtos.responses.NoteAccessResponse;
 import com.notesapp.backend.dtos.responses.NoteResponse;
+import com.notesapp.backend.dtos.responses.UserPublicResponse;
 import com.notesapp.backend.dtos.responses.UserResponse;
 import com.notesapp.backend.models.api.User;
 import com.notesapp.backend.repos.UserRepo;
@@ -21,12 +22,12 @@ public class UserService {
     private final UserRepo repo;
 
     @Transactional(readOnly = true)
-    public List<UserResponse> get() {
-        return repo.findAll().stream().map(this::toResponse).toList();
+    public List<UserPublicResponse> get() {
+        return repo.findAll().stream().map(this::toPublicResponse).toList();
     }
     @Transactional(readOnly = true)
-    public UserResponse getById(UUID id) {
-        return toResponse(repo.findById(id).orElseThrow(UserNotFoundException::new));
+    public UserPublicResponse getById(UUID id) {
+        return toPublicResponse(repo.findById(id).orElseThrow(UserNotFoundException::new));
     }
     @Transactional(readOnly = true)
     public UserResponse getProfile(User curUser) {
@@ -51,6 +52,13 @@ public class UserService {
         return toResponse(repo.save(u));
     }
 
+    private UserPublicResponse toPublicResponse(User u) {
+        return UserPublicResponse.builder()
+                .id(u.getId())
+                .username(u.getUsername())
+                .avatarUrl(u.getAvatarUrl())
+                .build();
+    }
     private UserResponse toResponse(User u) {
         return UserResponse.builder()
                 .id(u.getId())
