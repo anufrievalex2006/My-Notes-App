@@ -19,7 +19,7 @@ class AxiosNoteApi implements INoteRepo {
         return res.data;
     }
     async create(req: NoteCreateDto): Promise<NoteDto> {
-        const res = await api.post<NoteDto>("/notes");
+        const res = await api.post<NoteDto>("/notes", req);
         return res.data;
     }
     async update(id: string, req: NoteUpdateDto): Promise<NoteDto> {

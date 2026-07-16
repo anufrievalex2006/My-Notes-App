@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import { userRepo } from "../api/userApi"
 
 export const useProfile = () => {
-    const {data: profile, isLoading} = useQuery({
+    const {data: profile, isLoading, error} = useQuery({
         queryKey: ["profile"],
         queryFn: async () => {
             const res = await userRepo.getProfile();
@@ -12,6 +12,7 @@ export const useProfile = () => {
 
     return {
         profile,
-        isLoading
+        isLoading,
+        error
     };
 }

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import { noteRepo } from "../api/noteApi";
 
 export const useNotesList = () => {
-    const {data: notes, isLoading} = useQuery({
+    const {data: notes, isLoading, error} = useQuery({
         queryKey: ["notes"],
         queryFn: async () => {
             const res = await noteRepo.get();
@@ -12,6 +12,7 @@ export const useNotesList = () => {
 
     return {
         notes,
-        isLoading
+        isLoading,
+        error
     };
 }

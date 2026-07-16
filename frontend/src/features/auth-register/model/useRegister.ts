@@ -11,13 +11,14 @@ export const useRegister = () => {
 
     const register = useMutation({
         mutationFn: (req: RegisterDto) => authRepo.register(req),
-        onSuccess: () => {
+        onSuccess: (res) => {
             queryClient.invalidateQueries({
                 queryKey: ["profile"]
             });
             queryClient.invalidateQueries({
                 queryKey: ["users"]
             });
+            localStorage.setItem("token", res.token);
             nav.push("/");
         },
         onError: (e) => {
