@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button"
-import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { RegisterForm } from "@/features/auth-register"
 import { useRouter } from "next/navigation"
 
 export const RegisterMain = () => {
@@ -21,26 +20,8 @@ export const RegisterMain = () => {
                     </CardAction>
                 </CardHeader>
                 <CardContent className="mt-4 px-0">
-                    <form>
-                        <div className="flex flex-col gap-4">
-                            <div className="grid gap-2">
-                                <Label htmlFor="username">Никнейм</Label>
-                                <Input id="username" required></Input>
-                            </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="password">Пароль</Label>
-                                <Input id="password" type="password" required></Input>
-                            </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="avatarUrl">URL аватара</Label>
-                                <Input id="avatarUrl" required></Input>
-                            </div>
-                        </div>
-                    </form>
+                    <RegisterForm></RegisterForm>
                 </CardContent>
-                <CardFooter className="px-0">
-                    <Button type="submit" className="w-full bg-blue-500 cursor-pointer hover:bg-blue-900">Зарегистрироваться</Button>
-                </CardFooter>
             </Card>
         </div>
     )

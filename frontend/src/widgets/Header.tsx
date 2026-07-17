@@ -17,11 +17,11 @@ export const Header = () => {
             <h1 className="text-3xl text-blue-50">Заметки v2.0</h1>
             {isLoading ? null : profile ? (
                 <DropdownMenu>
-                    <DropdownMenuTrigger>
+                    <DropdownMenuTrigger render={
                         <Button variant="ghost" className="text-[20px] text-blue-50 hover:text-blue-900">
                             {profile.username}
                         </Button>
-                    </DropdownMenuTrigger>
+                    }></DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                         <DropdownMenuItem onClick={() => nav.push("/profile")}>
                             Профиль
