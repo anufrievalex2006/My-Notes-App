@@ -1,11 +1,11 @@
 import { Header } from "@/widgets/Header"
-import { LoginMain } from "@/widgets/login/LoginMain"
+import { RegisterMain } from "@/widgets/register/RegisterMain"
 
-export const LoginPage = () => {
+export const RegisterPage = () => {
     return (
         <div className="max-w-screen min-h-screen flex flex-col gap-8">
             <Header></Header>
-            <LoginMain></LoginMain>
+            <RegisterMain></RegisterMain>
         </div>
     )
 }
