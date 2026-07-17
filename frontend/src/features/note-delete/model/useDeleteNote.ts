@@ -1,5 +1,7 @@
 import { noteRepo } from "@/entities/note";
+import { getErrorMessage } from "@/shared/api/getErrorMessage";
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { toast } from "sonner";
 
 export const useDeleteNote = () => {
     const queryClient = useQueryClient();
@@ -10,9 +12,10 @@ export const useDeleteNote = () => {
             queryClient.invalidateQueries({
                 queryKey: ["notes"]
             });
+            toast.success("Заметка успешно удалена");
         },
         onError: (e) => {
-            console.error("Ошибка удаления заметки", e);
+            toast.error(getErrorMessage(e));
         }
     });
 

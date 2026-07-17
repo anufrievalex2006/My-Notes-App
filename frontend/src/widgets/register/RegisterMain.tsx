@@ -7,8 +7,8 @@ export const RegisterMain = () => {
     const nav = useRouter();
     return (
         <div className="flex-1 flex justify-center items-start p-8">
-            <Card className="w-full max-w-3xl px-8 py-6">
-            <CardHeader className="px-0">
+            <Card className="w-full max-w-3xl px-8 py-6 bg-gray-50 shadow-lg">
+                <CardHeader className="px-0">
                     <CardTitle>Регистрация</CardTitle>
                     <CardDescription>
                         Введите свои данные для регистрации (никнейм, пароль, по желанию можно поставить аватарку через URL)

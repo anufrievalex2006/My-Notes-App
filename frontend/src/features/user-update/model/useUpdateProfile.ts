@@ -1,5 +1,7 @@
 import { userRepo, UserUpdateDto } from "@/entities/user";
+import { getErrorMessage } from "@/shared/api/getErrorMessage";
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { toast } from "sonner";
 
 export const useUpdateProfile = () => {
     const queryClient = useQueryClient();
@@ -13,9 +15,10 @@ export const useUpdateProfile = () => {
             queryClient.invalidateQueries({
                 queryKey: ["users"]
             });
+            toast.success("Профиль успешно обновлен");
         },
         onError: (e) => {
-            console.error("Ошибка обновления профиля", e);
+            toast.error(getErrorMessage(e));
         }
     });
 

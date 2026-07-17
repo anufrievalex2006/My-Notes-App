@@ -2,8 +2,10 @@
 
 import { RegisterDto } from "@/entities/user";
 import { authRepo } from "@/entities/user/api/authApi";
+import { getErrorMessage } from "@/shared/api/getErrorMessage";
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export const useRegister = () => {
     const nav = useRouter();
@@ -22,7 +24,7 @@ export const useRegister = () => {
             nav.push("/");
         },
         onError: (e) => {
-            console.error("Ошибка регистрации", e);
+            toast.error(getErrorMessage(e));
         }
     });
 

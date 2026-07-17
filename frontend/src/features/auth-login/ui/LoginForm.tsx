@@ -32,14 +32,14 @@ export const LoginForm = () => {
             <div className="flex flex-col gap-4">
             <div className="grid gap-2">
                     <Label htmlFor="username">Никнейм</Label>
-                    <Input id="username" {...form.register("username")}></Input>
+                    <Input id="username" className="bg-white" {...form.register("username")}></Input>
                     {errors.username && (
                         <p className="text-sm text-destructive">{errors.username.message}</p>
                     )}
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="password">Пароль</Label>
-                    <Input id="password" type="password" {...form.register("password")}></Input>
+                    <Input id="password" type="password" className="bg-white" {...form.register("password")}></Input>
                     {errors.password && (
                         <p className="text-sm text-destructive">{errors.password.message}</p>
                     )}

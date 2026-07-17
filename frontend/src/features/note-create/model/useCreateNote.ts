@@ -1,5 +1,7 @@
 import { NoteCreateDto, noteRepo } from "@/entities/note";
+import { getErrorMessage } from "@/shared/api/getErrorMessage";
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { toast } from "sonner";
 
 export const useCreateNote = () => {
     const queryClient = useQueryClient();
@@ -10,9 +12,10 @@ export const useCreateNote = () => {
             queryClient.invalidateQueries({
                 queryKey: ["notes"]
             });
+            toast.success("Заметка успешно создана");
         },
         onError: (e) => {
-            console.error("Ошибка создания заметки", e);
+            toast.error(getErrorMessage(e));
         }
     });
 

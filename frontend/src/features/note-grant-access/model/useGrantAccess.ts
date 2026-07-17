@@ -1,5 +1,7 @@
 import { noteAccessRepo } from "@/entities/note";
+import { getErrorMessage } from "@/shared/api/getErrorMessage";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 interface Props {
     noteId: string;
@@ -15,9 +17,10 @@ export const useGrantAccess = () => {
             queryClient.invalidateQueries({
                 queryKey: ["notes", vars.noteId, "access"]
             });
+            toast.success("Права успешно выданы");
         },
         onError: (e) => {
-            console.error("Ошибка выдачи доступа к заметке", e);
+            toast.error(getErrorMessage(e));
         }
     });
 

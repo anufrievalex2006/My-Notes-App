@@ -1,5 +1,7 @@
 import { noteRepo, NoteUpdateDto } from "@/entities/note";
+import { getErrorMessage } from "@/shared/api/getErrorMessage";
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { toast } from "sonner";
 
 interface UpdateProps {
     id: string;
@@ -15,9 +17,10 @@ export const useUpdateNote = () => {
             queryClient.invalidateQueries({
                 queryKey: ["notes"]
             });
+            toast.success("Заметка успешно обновлена");
         },
         onError: (e) => {
-            console.error("Ошибка обновления заметки", e);
+            toast.error(getErrorMessage(e));
         }
     });
 
