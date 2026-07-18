@@ -3,6 +3,7 @@ package com.notesapp.backend.security;
 import com.notesapp.backend.repos.UserRepo;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -23,14 +24,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private final UserRepo repo;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String header = request.getHeader("Authorization");
+        String token = extractTokenFromCookie(request);
 
-        if (header == null || !header.startsWith("Bearer ")) {
+        if (token == null) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        String token = header.substring(7);
         try {
             UUID userId = service.extractUserId(token);
             if (SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -42,5 +42,16 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
         } catch (Exception _) {}
         filterChain.doFilter(request, response);
+    }
+    private String extractTokenFromCookie(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null) return null;
+
+        for (Cookie cookie : cookies) {
+            if ("token".equals(cookie.getName())) {
+                return cookie.getValue();
+            }
+        }
+        return null;
     }
 }

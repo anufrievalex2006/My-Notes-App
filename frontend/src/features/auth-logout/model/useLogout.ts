@@ -1,28 +1,27 @@
 "use client";
 
-import { RegisterDto } from "@/entities/user";
-import { authRepo } from "@/entities/user/api/authApi";
+import { authRepo } from "@/entities/user";
 import { getErrorMessage } from "@/shared/api/getErrorMessage";
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-export const useRegister = () => {
+export const useLogout = () => {
     const nav = useRouter();
     const queryClient = useQueryClient();
 
-    const register = useMutation({
-        mutationFn: (req: RegisterDto) => authRepo.register(req),
+    const logout = useMutation({
+        mutationFn: () => authRepo.logout(),
         onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ["profile"]
             });
-            nav.push("/");
+            nav.push("/login");
         },
         onError: (e) => {
             toast.error(getErrorMessage(e));
         }
     });
 
-    return register;
+    return logout;
 }

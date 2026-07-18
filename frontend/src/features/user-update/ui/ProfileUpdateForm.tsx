@@ -41,7 +41,7 @@ export const ProfileUpdateForm = ({profile}: Props) => {
                 <Label htmlFor="username">Никнейм</Label>
                 <Input id="username" {...form.register("username")} className="bg-white"></Input>
             </div>
-            <div className="flex-1 flex justify-between gap-8">
+            <div className="flex-1 flex justify-between gap-8 my-4">
                 <div className="grid gap-2 flex-1">
                     <Label htmlFor="avatarUrl">Ссылка на аватар</Label>
                     <Input id="avatarUrl" {...form.register("avatarUrl")} className="bg-white"></Input>

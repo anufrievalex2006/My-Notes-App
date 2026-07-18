@@ -13,14 +13,10 @@ export const useLogin = () => {
 
     const login = useMutation({
         mutationFn: (req: LoginDto) => authRepo.login(req),
-        onSuccess: (res) => {
+        onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ["profile"]
             });
-            queryClient.invalidateQueries({
-                queryKey: ["users"]
-            });
-            localStorage.setItem("token", res.token);
             nav.push("/");
         },
         onError: (e) => {
