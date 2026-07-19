@@ -7,7 +7,7 @@ export const ProfileMain = () => {
     return isLoading ? (
         <h2 className="text-2xl text-blue-400">Пожалуйста, подождите...</h2>
     ) : (error || !profile) ? (
-        <h2 className="text-2xl text-red-700">Ошибка загрузки профиля</h2>
+        <h2 className="text-2xl text-destructive">Ошибка загрузки профиля</h2>
     ) : (
         <div className="flex-1 flex flex-col gap-8 items-start">
             <h1 className="text-4xl px-8">Информация о профиле</h1>

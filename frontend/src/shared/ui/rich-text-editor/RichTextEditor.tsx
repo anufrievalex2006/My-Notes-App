@@ -5,6 +5,7 @@ import Underline from "@tiptap/extension-underline";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Toolbar } from "./Toolbar";
+import { useEffect } from "react";
 
 interface Props {
     value: string;
@@ -26,6 +27,14 @@ export const RichTextEditor = ({value, onChange, className}: Props) => {
             }
         }
     });
+
+    useEffect(() => {
+        if (editor && value !== editor.getHTML()) {
+            editor.commands.setContent(value, {
+                emitUpdate: false
+            });
+        }
+    }, [value, editor]);
 
     return (
         <div className={cn("rounded-md border", className)}>
