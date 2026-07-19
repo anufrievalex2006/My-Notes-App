@@ -5,6 +5,7 @@ import com.notesapp.backend.dtos.requests.update.NoteUpdateDto;
 import com.notesapp.backend.dtos.responses.NoteAccessResponse;
 import com.notesapp.backend.dtos.responses.NoteResponse;
 import com.notesapp.backend.models.api.Note;
+import com.notesapp.backend.models.api.NoteAccess;
 import com.notesapp.backend.models.api.User;
 import com.notesapp.backend.repos.NoteAccessRepo;
 import com.notesapp.backend.repos.NoteRepo;
@@ -34,6 +35,19 @@ public class NoteService {
             throw new NoteAccessDeniedException();
 
         return toResponse(n);
+    }
+    @Transactional(readOnly = true)
+    public List<NoteResponse> getPublic(User curUser) {
+        return repo.findByIsPublicTrueAndAuthorIdNot(curUser.getId()).stream()
+                .map(this::toResponse)
+                .toList();
+    }
+    @Transactional(readOnly = true)
+    public List<NoteResponse> getShared(User curUser) {
+        return accessRepo.findByUserId(curUser.getId()).stream()
+                .map(NoteAccess::getNote)
+                .map(this::toResponse)
+                .toList();
     }
     @Transactional
     public NoteResponse create(NoteCreateDto req, User curUser) {
@@ -96,6 +110,7 @@ public class NoteService {
                         .id(a.getId())
                         .noteId(a.getNote().getId())
                         .userId(a.getUser().getId())
+                        .username(a.getUser().getUsername())
                         .grantedAt(a.getGrantedAt())
                         .build()).toList())
                 .build();

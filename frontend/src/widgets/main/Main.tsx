@@ -21,6 +21,8 @@ export const Main = () => {
                 <h2 className="text-2xl text-blue-400 text-center">Пожалуйста, подождите...</h2>
             ) : (error || !notes) ? (
                 <h2 className="text-2xl text-destructive text-center">Ошибка загрузки заметок</h2>
+            ) : notes.length === 0 ? (
+                <h2 className="text-2xl text-blue-400 font-bold text-center">Пока нет заметок!</h2>
             ) : (
                 <div className="flex flex-col gap-6">
                     {notes.map(n => (

@@ -25,5 +25,6 @@ export interface NoteAccessDto {
     id: string;
     noteId: string;
     userId: string;
+    username: string;
     grantedAt: string;
 }

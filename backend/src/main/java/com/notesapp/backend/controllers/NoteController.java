@@ -24,6 +24,14 @@ public class NoteController {
     public ResponseEntity<List<NoteResponse>> getMy(@AuthenticationPrincipal User cur) {
         return ResponseEntity.ok(service.getMy(cur));
     }
+    @GetMapping("/shared")
+    public ResponseEntity<List<NoteResponse>> getShared(@AuthenticationPrincipal User cur) {
+        return ResponseEntity.ok(service.getShared(cur));
+    }
+    @GetMapping("/public")
+    public ResponseEntity<List<NoteResponse>> getPublic(@AuthenticationPrincipal User cur) {
+        return ResponseEntity.ok(service.getPublic(cur));
+    }
     @GetMapping("/{id}")
     public ResponseEntity<NoteResponse> getById(
             @PathVariable UUID id,

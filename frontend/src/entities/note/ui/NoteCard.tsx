@@ -6,9 +6,11 @@ import { IconTrash } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
 import { useDeleteNote } from "@/features/note-delete";
 import { toast } from "sonner";
+import { UserDto, useUserDetails } from "@/entities/user";
 
 interface Props {
     note: NoteDto;
+    authorId?: string;
 }
 
 const formatDate = (date: string | null): string => {
@@ -17,8 +19,13 @@ const formatDate = (date: string | null): string => {
     return `Создано ${d} в ${t}`;
 }
 
-export const NoteCard = ({note}: Props) => {
+export const NoteCard = ({note, authorId}: Props) => {
     const nav = useRouter();
+    let authorName: string | undefined;
+    if (authorId) {
+        const {user} = useUserDetails(authorId);
+        authorName = user?.username ?? "Неизвестно";
+    }
     const del = useDeleteNote();
     const onDelete = () => {
         toast("Вы уверены, что хотите удалить эту заметку?", {
@@ -38,7 +45,7 @@ export const NoteCard = ({note}: Props) => {
         <Card className="px-8 py-6 bg-amber-50 shadow-lg cursor-pointer transition-all hover:bg-amber-100 hover:-translate-y-1.5" onClick={
             () => nav.push(`/notes/${note.id}`)
         }>
-            <CardContent className="px-0">
+            <CardContent className="px-0 gap-4">
                 <div className="flex justify-between items-center">
                     <h2 className="text-2xl">{note.title}</h2>
                     <div className="flex items-center gap-4">
@@ -51,6 +58,9 @@ export const NoteCard = ({note}: Props) => {
                         </Button>
                     </div>
                 </div>
+                {authorName && (
+                    <h3 className="text-xl text-gray-400">Автор: {authorName}</h3>
+                )}
             </CardContent>
         </Card>
     )

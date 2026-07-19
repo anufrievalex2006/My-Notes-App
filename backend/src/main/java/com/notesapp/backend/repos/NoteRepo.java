@@ -8,4 +8,5 @@ import java.util.UUID;
 
 public interface NoteRepo extends JpaRepository<Note, UUID> {
     List<Note> findByAuthorId(UUID authorId);
+    List<Note> findByIsPublicTrueAndAuthorIdNot(UUID authorId);
 }

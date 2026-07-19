@@ -13,9 +13,7 @@ export const useLogout = () => {
     const logout = useMutation({
         mutationFn: () => authRepo.logout(),
         onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: ["profile"]
-            });
+            queryClient.clear();
             nav.push("/login");
         },
         onError: (e) => {

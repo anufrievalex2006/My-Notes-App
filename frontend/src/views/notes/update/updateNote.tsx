@@ -7,7 +7,7 @@ interface Props {
 
 export const UpdateNotePage = ({id}: Props) => {
     return (
-        <div className="max-w-screen min-h-screen flex flex-col gap-8">
+        <div className="max-w-screen min-h-screen flex flex-col gap-8 mb-8">
             <Header></Header>
             <UpdateNoteMain id={id}></UpdateNoteMain>
         </div>

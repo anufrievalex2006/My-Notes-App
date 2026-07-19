@@ -13,5 +13,6 @@ public class NoteAccessResponse {
     private UUID id;
     private UUID noteId;
     private UUID userId;
+    private String username;
     private LocalDateTime grantedAt;
 }

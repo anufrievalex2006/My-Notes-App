@@ -14,9 +14,7 @@ export const useLogin = () => {
     const login = useMutation({
         mutationFn: (req: LoginDto) => authRepo.login(req),
         onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: ["profile"]
-            });
+            queryClient.clear();
             nav.push("/");
         },
         onError: (e) => {

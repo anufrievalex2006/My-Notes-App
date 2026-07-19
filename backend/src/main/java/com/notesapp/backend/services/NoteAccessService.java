@@ -76,6 +76,7 @@ public class NoteAccessService {
                 .id(a.getId())
                 .noteId(a.getNote().getId())
                 .userId(a.getUser().getId())
+                .username(a.getUser().getUsername())
                 .grantedAt(a.getGrantedAt())
                 .build();
     }

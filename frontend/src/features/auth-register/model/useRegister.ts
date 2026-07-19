@@ -14,9 +14,7 @@ export const useRegister = () => {
     const register = useMutation({
         mutationFn: (req: RegisterDto) => authRepo.register(req),
         onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: ["profile"]
-            });
+            queryClient.clear();
             nav.push("/");
         },
         onError: (e) => {
