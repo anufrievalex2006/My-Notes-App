@@ -47,7 +47,7 @@ export const NoteUpdateForm = ({id}: Props) => {
                 <div className="flex flex-col gap-3">
                     <div className="grid gap-2">
                         <Label htmlFor="title" className="text-xl">Заголовок</Label>
-                        <Input id="title" {...form.register("title")} className="h-12 bg-white border-gray-300"></Input>
+                        <Input id="title" {...form.register("title")} className="h-12 md:text-lg bg-white border-gray-300"></Input>
                     </div>
                     <div className="flex items-center gap-2">
                         <Controller control={form.control} name="isPublic" render={({field}) => (
