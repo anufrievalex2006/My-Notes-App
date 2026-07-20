@@ -13,12 +13,7 @@ export const UpdateNoteMain = ({id}: Props) => {
     const {profile} = useProfile();
     const isOwner = !!note && !!profile && note.authorId === profile.id;
     return (
-        <div className="flex-1 flex flex-col gap-16 items-start px-16">
-            <Card className="w-full mx-auto px-8 py-6 bg-gray-50 shadow-lg">
-                <CardContent className="px-0">
-                    <NoteUpdateForm id={id}></NoteUpdateForm>
-                </CardContent>
-            </Card>
+        <div className="flex-1 flex flex-col gap-8 items-start px-16">
             {isOwner && (
                 <Card className="w-full mx-auto px-8 py-6 bg-gray-50 shadow-lg">
                     <CardContent className="px-0">
@@ -26,6 +21,11 @@ export const UpdateNoteMain = ({id}: Props) => {
                     </CardContent>
                 </Card>
             )}
+            <Card className="w-full mx-auto px-8 py-6 bg-gray-50 shadow-lg">
+                <CardContent className="px-0">
+                    <NoteUpdateForm id={id}></NoteUpdateForm>
+                </CardContent>
+            </Card>
         </div>
     )
 }

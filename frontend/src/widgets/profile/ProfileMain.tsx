@@ -9,8 +9,8 @@ export const ProfileMain = () => {
     ) : (error || !profile) ? (
         <h2 className="text-2xl text-destructive">Ошибка загрузки профиля</h2>
     ) : (
-        <div className="flex-1 flex flex-col gap-8 items-start">
-            <h1 className="text-4xl px-8">Информация о профиле</h1>
+        <div className="flex-1 flex flex-col gap-8 px-8 sm:px-12 md:px-16 items-start">
+            <h1 className="text-4xl">Информация о профиле</h1>
             <Card className="w-full mx-auto max-w-3xl px-8 py-6 bg-gray-50 shadow-lg">
                 <CardContent className="px-0">
                     <ProfileUpdateForm profile={profile}></ProfileUpdateForm>

@@ -12,17 +12,17 @@ export const Header = () => {
     const logout = useLogout();
     return (
         <header className="py-6 px-8 flex justify-between items-center bg-blue-400 flex-nowrap">
-            <div className="flex items-center gap-8">
-                <h1 className="text-3xl text-blue-50 cursor-pointer" onClick={() => nav.push("/")}>Заметки v2.0</h1>
+            <div className="flex items-center gap-2 sm:gap-4 md:gap-8">
+                <h1 className="text-xl sm:text-2xl md:text-3xl text-nowrap text-blue-50 cursor-pointer" onClick={() => nav.push("/")}>Заметки v2.0</h1>
                 {profile && (
-                    <div className="flex items-center gap-3">
-                        <Button variant="ghost" className="text-blue-50 text-[16px]" onClick={() => nav.push("/")}>
+                    <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
+                        <Button variant="ghost" className="text-blue-50 text-[16px] px-0" onClick={() => nav.push("/")}>
                             Мои заметки
                         </Button>
-                        <Button variant="ghost" className="text-blue-50 text-[16px]" onClick={() => nav.push("/notes/public")}>
+                        <Button variant="ghost" className="text-blue-50 text-[16px] px-0" onClick={() => nav.push("/notes/public")}>
                             Публичные заметки
                         </Button>
-                        <Button variant="ghost" className="text-blue-50 text-[16px]" onClick={() => nav.push("/notes/shared")}>
+                        <Button variant="ghost" className="text-blue-50 text-[16px] px-0" onClick={() => nav.push("/notes/shared")}>
                             Доступные заметки
                         </Button>
                     </div>

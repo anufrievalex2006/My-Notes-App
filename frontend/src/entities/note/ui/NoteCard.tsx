@@ -49,7 +49,7 @@ export const NoteCard = ({note, authorId}: Props) => {
                 <div className="flex justify-between items-center">
                     <h2 className="text-2xl">{note.title}</h2>
                     <div className="flex items-center gap-4">
-                        <p className="text-lg text-gray-400">{formatDate(note.createdAt)}</p>
+                        <p className="text-lg text-gray-400 hidden md:flex">{formatDate(note.createdAt)}</p>
                         <Button className="cursor-pointer" size="lg" variant="destructive" onClick={(e) => {
                             e.stopPropagation();
                             onDelete();
@@ -58,6 +58,7 @@ export const NoteCard = ({note, authorId}: Props) => {
                         </Button>
                     </div>
                 </div>
+                <p className="text-lg mt-4 text-gray-400 md:hidden">{formatDate(note.createdAt)}</p>
                 {authorName && (
                     <h3 className="text-xl text-gray-400">Автор: {authorName}</h3>
                 )}

@@ -8,10 +8,10 @@ export const Main = () => {
     const nav = useRouter();
     const {notes, isLoading, error} = useNotesList();
     return (
-        <div className="flex justify-between flex-col px-16 gap-12">
-            <div className="flex justify-between flex-1">
+        <div className="flex justify-between flex-col px-8 sm:px-12 md:px-16 gap-6 sm:gap-9 md:gap-12">
+            <div className="flex flex-col sm:flex-row gap-4 justify-between sm:items-center flex-1">
                 <h1 className="text-4xl">Мои заметки</h1>
-                <Button className="py-5 px-4 bg-blue-500 hover:bg-blue-900 cursor-pointer" onClick={
+                <Button className="py-3 px-2 sm:py-5 sm:px-4 w-full sm:w-fit bg-blue-500 hover:bg-blue-900 cursor-pointer" onClick={
                     () => nav.push("/notes/create")
                 }>
                     <IconPlus></IconPlus> Добавить заметку
